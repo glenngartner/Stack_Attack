@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PageLinks} from '../generic/interfaces';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  public links: PageLinks[] = [
+    {name: 'Home', route: ''},
+    {name: 'Docs', route: ''}
+
+  ];
 
   constructor() { }
 
