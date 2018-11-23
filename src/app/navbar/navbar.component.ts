@@ -10,7 +10,7 @@ export class NavbarComponent implements OnInit {
 
   public links: PageLinks[] = [
     {name: 'Home', route: ''},
-    {name: 'Docs', route: ''}
+    {name: 'Docs', route: 'docs'}
 
   ];
 
