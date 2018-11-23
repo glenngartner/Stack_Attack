@@ -1,18 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import {AppComponent} from './app.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {StackSearchComponent} from './stack-search/stack-search.component';
 
 const appRoutes: Routes = [
-// {path: '', component: AppComponent},
+  {path: '', component: StackSearchComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    PageNotFoundComponent,
+    StackSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -23,4 +28,5 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
