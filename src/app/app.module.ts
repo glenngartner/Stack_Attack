@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import {CustomRouterModule} from './modules/custom-router.module';
 import {AppComponent} from './app.component';
@@ -18,7 +19,8 @@ import { DocsComponent } from './docs/docs.component';
   ],
   imports: [
     BrowserModule,
-    CustomRouterModule
+    CustomRouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
