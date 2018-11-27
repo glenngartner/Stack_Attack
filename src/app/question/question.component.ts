@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StackQuestion} from '../generic/interfaces';
+import {$} from 'protractor';
 
 @Component({
   selector: 'app-question',
@@ -8,8 +9,9 @@ import {StackQuestion} from '../generic/interfaces';
 })
 export class QuestionComponent implements OnInit {
 
+  public mouseIsOver = false;
   private _question: StackQuestion;
-  private _titleCharLength = 35;
+  private _titleCharLength = 45;
 
   @Input()
   set question(value: StackQuestion) {
@@ -18,6 +20,7 @@ export class QuestionComponent implements OnInit {
     }
     this._question = value;
   }
+
   get question(): StackQuestion {
     return this._question;
   }
@@ -28,4 +31,13 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onMouseOver() {
+    console.log('Mouse over this element');
+    this.mouseIsOver = true;
+  }
+
+  public onMouseOut(){
+    console.log('Mouse is out');
+    this.mouseIsOver = false;
+  }
 }

@@ -1,5 +1,22 @@
-<div class="row">
-  <div class="col-xl-5 limit">
-    <a href={{question.link}}>{{question.title}}</a>
+<div class="row question_row">
+  <div class="col-auto w-100"
+       [class.shadow]=mouseIsOver
+       [class.border]=mouseIsOver
+       (mouseover)="onMouseOver()"
+       (mouseleave)="onMouseOut()">
+    <div class="row">
+      <div class="col-3">
+        <a class="" href={{question.link}}>{{question.title}}</a>
+      </div>
+      <div class="col-1 text-right">
+        <p>{{question.score}}</p>
+      </div>
+      <div class="col-1 text-right">
+        <p>{{question.view_count}}</p>
+      </div>
+      <div class="col-1 text-left">
+        <p>{{question.tags}}</p>
+      </div>
+    </div>
   </div>
 </div>
