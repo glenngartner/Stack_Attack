@@ -8,6 +8,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {StackSearchComponent} from './stack-search/stack-search.component';
 import { DocsComponent } from './docs/docs.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DocsComponent } from './docs/docs.component';
     NavbarComponent,
     PageNotFoundComponent,
     StackSearchComponent,
-    DocsComponent
+    DocsComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

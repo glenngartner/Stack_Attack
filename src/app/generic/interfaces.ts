@@ -22,6 +22,7 @@ export interface StackQuestion {
   creation_date: number;
   question_id: number;
   title: string;
+  link: string;
 }
 export interface StackAnswer {
   answer_id: number;

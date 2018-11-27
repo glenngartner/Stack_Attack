@@ -1,21 +1,13 @@
 <div class="form-row mt-2">
-  <div class="col-md-5">
+  <div class="col-xl-5">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
            (keyup)="captureSearchInput($event.target.value)">
   </div>
 </div>
 <div class="form-row">
   <div class="col-auto">
-    <button class="btn btn-outline-success my-2 my-sm-2" type="submit" (click)="showQuestionsWithQuery()">Search</button>
+    <button class="btn btn-outline-success my-2 my-sm-2" type="submit" (click)="showQuestionsWithQuery()">Search
+    </button>
   </div>
 </div>
-<div class="row">
-  <div class="col-md">
-    <ol>
-      <li *ngFor="let question of stackQuestions">
-        <a href={{question.link}}>{{question.title}}</a>
-      </li>
-    </ol>
-    <ng-template #noData>No Data Available</ng-template>
-  </div>
-</div>
+<app-question *ngFor="let question of stackQuestions" [question] = "question"></app-question>
