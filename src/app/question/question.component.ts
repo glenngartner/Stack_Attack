@@ -11,19 +11,19 @@ export class QuestionComponent implements OnInit {
 
   public mouseIsOver = false;
   private _question: StackQuestion;
+  public concatTitle = '';
   private _titleCharLength = 45;
 
   @Input()
   set question(value: StackQuestion) {
-    if (value.title.length > this._titleCharLength) {
-      value.title = value.title.substr(0, this._titleCharLength) + '...';
-    }
+    this.trimTitle(value.title);
     this._question = value;
   }
-
   get question(): StackQuestion {
     return this._question;
   }
+  @Input()
+  public questionNumber = 0;
 
   constructor() {
   }
@@ -31,13 +31,19 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
   }
 
+  private trimTitle(title: string): void {
+    if (title.length > this._titleCharLength) {
+      this.concatTitle = title.substr(0, this._titleCharLength) + '...';
+    } else {
+      this.concatTitle = title;
+    }
+  }
+
   public onMouseOver() {
-    console.log('Mouse over this element');
     this.mouseIsOver = true;
   }
 
-  public onMouseOut(){
-    console.log('Mouse is out');
+  public onMouseOut() {
     this.mouseIsOver = false;
   }
 }

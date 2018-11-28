@@ -1,5 +1,5 @@
 <div class="form-row mt-2">
-  <div class="col-xl-5">
+  <div class="col-auto w-100">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
            (keyup)="captureSearchInput($event.target.value)">
   </div>
@@ -9,5 +9,8 @@
     <button class="btn btn-outline-success my-2 my-sm-2" type="submit" (click)="showQuestionsWithQuery()">Search
     </button>
   </div>
+  <div class="col-auto my-auto">
+    Results: {{stackQuestions.length}}
+  </div>
 </div>
-<app-question *ngFor="let question of stackQuestions" [question] = "question"></app-question>
+<app-question *ngFor="let question of stackQuestions; let i = index;" [question] = "question" [questionNumber]="i"></app-question>

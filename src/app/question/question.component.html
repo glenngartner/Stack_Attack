@@ -1,21 +1,47 @@
 <div class="row question_row">
   <div class="col-auto w-100"
-       [class.shadow]=mouseIsOver
-       [class.border]=mouseIsOver
        (mouseover)="onMouseOver()"
        (mouseleave)="onMouseOut()">
     <div class="row">
-      <div class="col-3">
-        <a class="" href={{question.link}}>{{question.title}}</a>
-      </div>
-      <div class="col-1 text-right">
-        <p>{{question.score}}</p>
-      </div>
-      <div class="col-1 text-right">
-        <p>{{question.view_count}}</p>
-      </div>
-      <div class="col-1 text-left">
-        <p>{{question.tags}}</p>
+      <div class="col-auto w-100">
+        <a class="btn btn-light w-100 text-left" data-toggle="collapse" href="#collapseQuestion{{questionNumber}}"
+           role="button" aria-expanded="false" aria-controls="collapseQuestion">
+          {{concatTitle}}
+        </a>
+        <div class="collapse" id="collapseQuestion{{questionNumber}}">
+          <div class="card card-body shadow">
+            <div class="row">
+              <div class="col-auto w-100">
+                <span><b>Title:</b> {{question.title}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto w-100">
+                <span><b>Q:</b> ...</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto w-100">
+                <span><b>A:</b> ... </span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-auto">
+                <span><b>Score:</b> {{question.score}}</span>
+              </div>
+              <div class="col-auto">
+                <span><b>Views:</b> {{question.view_count}}</span>
+              </div>
+              <div class="col-auto">
+                <span><b>Asked On:</b> {{question.creation_date}}</span>
+              </div>
+              <div class="col-auto">
+                <span><b>Link:</b> <a href={{question.link}}> Source</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
