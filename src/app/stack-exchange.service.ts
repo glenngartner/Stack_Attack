@@ -14,7 +14,7 @@ export class StackExchangeService {
 
   searchForQuestions(inTitle: string): Observable<StackReply> {
     inTitle = inTitle.trim();
-    const url = `https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=${inTitle}&site=stackoverflow`;
+    const url = `https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=${inTitle}&site=stackoverflow&filter=withbody`;
     return this.http.get<StackReply>(url)
       .pipe(
         retry(3),

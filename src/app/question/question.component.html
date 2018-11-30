@@ -1,23 +1,31 @@
 <div class="row question_row">
   <div class="col-auto w-100"
        (mouseover)="onMouseOver()"
-       (mouseleave)="onMouseOut()">
+       (mouseleave)="onMouseOut()"
+       (mousedown)="menuToggle()"
+  >
     <div class="row">
       <div class="col-auto w-100">
         <a class="btn btn-light w-100 text-left" data-toggle="collapse" href="#collapseQuestion{{questionNumber}}"
-           role="button" aria-expanded="false" aria-controls="collapseQuestion">
-          {{concatTitle}}
+           role="button" aria-expanded="false" aria-controls="collapseQuestion"
+           [class.shadow]="menuIsOpen"
+           [class.btn-dark]="menuIsOpen"
+           [innerHTML]="concatTitle"
+        >
         </a>
         <div class="collapse" id="collapseQuestion{{questionNumber}}">
-          <div class="card card-body shadow">
+          <div class="card card-body"
+               [class.shadow]="menuIsOpen"
+          >
             <div class="row">
               <div class="col-auto w-100">
-                <span><b>Title:</b> {{question.title}}</span>
+                <span><b [innerHTML]="question.title">Title:</b></span>
               </div>
             </div>
+            <hr>
             <div class="row">
               <div class="col-auto w-100">
-                <span><b>Q:</b> ...</span>
+                <span><b>Q:</b><p [innerHTML]="question.body"></p></span>
               </div>
             </div>
             <div class="row">

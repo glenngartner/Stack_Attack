@@ -10,8 +10,9 @@ import {$} from 'protractor';
 export class QuestionComponent implements OnInit {
 
   public mouseIsOver = false;
-  private _question: StackQuestion;
   public concatTitle = '';
+  public menuIsOpen = false;
+  private _question: StackQuestion;
   private _titleCharLength = 45;
 
   @Input()
@@ -19,9 +20,11 @@ export class QuestionComponent implements OnInit {
     this.trimTitle(value.title);
     this._question = value;
   }
+
   get question(): StackQuestion {
     return this._question;
   }
+
   @Input()
   public questionNumber = 0;
 
@@ -45,5 +48,9 @@ export class QuestionComponent implements OnInit {
 
   public onMouseOut() {
     this.mouseIsOver = false;
+  }
+
+  public menuToggle() {
+    this.menuIsOpen = !this.menuIsOpen;
   }
 }
