@@ -4,7 +4,7 @@ export interface PageLinks {
 }
 
 export interface StackReply {
-  items: StackQuestion[];
+  items: StackQuestion[] & StackAnswer[];
   has_more: number;
   quota_max: number;
   quota_remaining: number;
@@ -13,7 +13,7 @@ export interface StackReply {
 export interface StackQuestion {
   accepted_answer_id: number;
   answer_count: number;
-  answers?: StackAnswer;
+  answers?: StackAnswer[];
   body?: string;
   body_markdown?: string;
   score: number;

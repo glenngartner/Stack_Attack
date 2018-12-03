@@ -21,6 +21,25 @@ export class StackExchangeService {
         catchError(this.ErrorHandler)
       );
   }
+
+  searchForAnswersToQuestion(questionID: number): Observable<StackReply> {
+    const url = `https://api.stackexchange.com/2.2/questions/${questionID}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody`;
+    return this.http.get<StackReply>(url)
+      .pipe(
+        retry(3),
+        catchError(this.ErrorHandler)
+      );
+  }
+
+  public getAcceptedAnswerByID(answerID: number): Observable<StackReply> {
+    const url = `https://api.stackexchange.com/2.2/answers/${answerID}?order=desc&sort=activity&site=stackoverflow`;
+    return this.http.get<StackReply>(url)
+      .pipe(
+        retry(3),
+        catchError(this.ErrorHandler)
+      );
+  }
+
   private ErrorHandler(error: HttpErrorResponse) {
     // check for client side error
     if (error.error instanceof ErrorEvent) {

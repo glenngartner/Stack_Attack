@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StackQuestion} from '../generic/interfaces';
-import {$} from 'protractor';
+import {StackQuestion, StackReply} from '../generic/interfaces';
+import {StackExchangeService} from '../stack-exchange.service';
 
 @Component({
   selector: 'app-question',

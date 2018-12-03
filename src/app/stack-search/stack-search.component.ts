@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StackExchangeService} from '../stack-exchange.service';
 import {StackQuestion, StackReply} from '../generic/interfaces';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-stack-search',
@@ -29,14 +27,29 @@ export class StackSearchComponent implements OnInit {
   }
 
   showQuestionsWithQuery() {
-    // this.stackReply$ = this.stackExchangeService.searchForQuestions(this.searchInput);
     this.stackExchangeService.searchForQuestions(this.searchInput)
       .subscribe(
         (data: StackReply) => {
           console.log('Stack Data received: ', data.items);
           this.stackQuestions = data.items;
+          this.getAnswersFromQuery();
         },
         error => this.error = error
       );
+  }
+
+  getAnswersFromQuery() {
+    for (const question of this.stackQuestions) {
+      if (question.answer_count > 0) {
+        this.stackExchangeService.searchForAnswersToQuestion(question.question_id)
+          .subscribe(
+            (data: StackReply) => {
+              console.log('Stack Answers Received: ', data.items);
+              question.answers = data.items;
+            },
+            error => this.error = error
+          );
+      }
+    }
   }
 }
