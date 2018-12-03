@@ -14,7 +14,7 @@ export class StackExchangeService {
 
   searchForQuestions(inTitle: string): Observable<StackReply> {
     inTitle = inTitle.trim();
-    const url = `https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=${inTitle}&site=stackoverflow&filter=withbody`;
+    const url = `https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=${inTitle}&site=stackoverflow&filter=withbody&key=Sc0KoR2)q6dLbPmnwF2ovg((`;
     return this.http.get<StackReply>(url)
       .pipe(
         retry(3),
@@ -23,7 +23,7 @@ export class StackExchangeService {
   }
 
   searchForAnswersToQuestion(questionID: number): Observable<StackReply> {
-    const url = `https://api.stackexchange.com/2.2/questions/${questionID}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody`;
+    const url = `https://api.stackexchange.com/2.2/questions/${questionID}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=Sc0KoR2)q6dLbPmnwF2ovg((`;
     return this.http.get<StackReply>(url)
       .pipe(
         retry(3),
@@ -32,7 +32,7 @@ export class StackExchangeService {
   }
 
   public getAcceptedAnswerByID(answerID: number): Observable<StackReply> {
-    const url = `https://api.stackexchange.com/2.2/answers/${answerID}?order=desc&sort=activity&site=stackoverflow`;
+    const url = `https://api.stackexchange.com/2.2/answers/${answerID}?order=desc&sort=activity&site=stackoverflow&key=Sc0KoR2)q6dLbPmnwF2ovg((`;
     return this.http.get<StackReply>(url)
       .pipe(
         retry(3),
@@ -45,7 +45,7 @@ export class StackExchangeService {
     if (error.error instanceof ErrorEvent) {
       console.log(`ERROR: ${error.error.message}`);
     } else { // check for server side response error
-      console.error(`Server response error ${error.status}, body was: ${error.error}`);
+      console.error(`Server response error ${error.status}, body was: ${error.error}`, error.error);
     }
     // tell the user an error occurred
     return throwError(`An Error Occurred. Please try again, now or later. Check the console for details`);

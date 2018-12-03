@@ -10,8 +10,11 @@
            role="button" aria-expanded="false" aria-controls="collapseQuestion"
            [class.shadow]="menuIsOpen"
            [class.btn-dark]="menuIsOpen"
-           [innerHTML]="concatTitle"
         >
+          <div *ngIf="question.answers; else elseAnswerSumBlock">
+            <b>{{concatTitle + question.answers.length + 1}}</b>
+          </div>
+          <ng-template #elseAnswerSumBlock><b>{{concatTitle}} 0</b></ng-template>
         </a>
         <div class="collapse" id="collapseQuestion{{questionNumber}}" (mousedown)="onClickExpandedMenu()">
           <div class="card card-body"
