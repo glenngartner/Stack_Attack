@@ -14,6 +14,8 @@ export class QuestionComponent implements OnInit {
   public menuIsOpen = false;
   private _question: StackQuestion;
   private _titleCharLength = 45;
+  private _clickedInsideExpandedMenu = false;
+  private _resultTitleClicked = false;
 
   @Input()
   set question(value: StackQuestion) {
@@ -51,6 +53,24 @@ export class QuestionComponent implements OnInit {
   }
 
   public menuToggle() {
-    this.menuIsOpen = !this.menuIsOpen;
+    if (this._resultTitleClicked && !this._clickedInsideExpandedMenu) {
+      this.menuIsOpen = !this.menuIsOpen;
+    }
+  }
+
+  public onClickResultTitle() {
+    if (!this._clickedInsideExpandedMenu) {
+      this._resultTitleClicked = true;
+    } else {
+      this._resultTitleClicked = false;
+    }
+    this.menuToggle();
+    this._resultTitleClicked = false;
+    this._clickedInsideExpandedMenu = false;
+  }
+
+  public onClickExpandedMenu() {
+    this._clickedInsideExpandedMenu = true;
+    this.menuToggle();
   }
 }

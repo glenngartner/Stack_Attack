@@ -2,7 +2,7 @@
   <div class="col-auto w-100"
        (mouseover)="onMouseOver()"
        (mouseleave)="onMouseOut()"
-       (mousedown)="menuToggle()"
+       (mousedown)="onClickResultTitle()"
   >
     <div class="row">
       <div class="col-auto w-100">
@@ -13,7 +13,7 @@
            [innerHTML]="concatTitle"
         >
         </a>
-        <div class="collapse" id="collapseQuestion{{questionNumber}}">
+        <div class="collapse" id="collapseQuestion{{questionNumber}}" (mousedown)="onClickExpandedMenu()">
           <div class="card card-body"
                [class.shadow]="menuIsOpen"
           >
@@ -29,11 +29,13 @@
               <div class="col-sm-auto mx-auto mb-4">
                 <ul class="nav nav-tabs" id="resultsTab{{questionNumber}}" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="question-tab{{questionNumber}}" data-toggle="tab" href="#question{{questionNumber}}" role="tab"
+                    <a class="nav-link active" id="question-tab{{questionNumber}}" data-toggle="tab"
+                       href="#question{{questionNumber}}" role="tab"
                        aria-controls="question" aria-selected="true">Question</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="answer-tab{{questionNumber}}" data-toggle="tab" href="#answer{{questionNumber}}" role="tab"
+                    <a class="nav-link" id="answer-tab{{questionNumber}}" data-toggle="tab"
+                       href="#answer{{questionNumber}}" role="tab"
                        aria-controls="answer" aria-selected="false">Answer</a>
                   </li>
                 </ul>
@@ -42,7 +44,8 @@
             <!--Question and Answer Body-->
             <div class="row">
               <div class="col-auto w-100 tab-content" id="resultsTabContent{{questionNumber}}">
-                <div class="tab-pane fade show active" id="question{{questionNumber}}" role="tabpanel" aria-labelledby="question-tab">
+                <div class="tab-pane fade show active" id="question{{questionNumber}}" role="tabpanel"
+                     aria-labelledby="question-tab">
                   <span><p [innerHTML]="question.body"></p></span>
                 </div>
                 <div class="tab-pane fade" id="answer{{questionNumber}}" role="tabpanel" aria-labelledby="answer-tab">
