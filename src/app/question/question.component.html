@@ -49,7 +49,14 @@
                   <span><p [innerHTML]="question.body"></p></span>
                 </div>
                 <div class="tab-pane fade" id="answer{{questionNumber}}" role="tabpanel" aria-labelledby="answer-tab">
-                  <p *ngIf="question.answers; else elseBlock" [innerHTML]="question.answers[0].body"></p>
+                  <div *ngIf="question.answers; then thenBlock; else elseBlock">
+                  </div>
+                  <ng-template #thenBlock>
+                    <div *ngFor="let answer of question.answers; let j = index">
+                      <div class="row"><div class="col-sm-auto mx-auto"><p><b>Answer {{j+1}}</b></p></div> </div>
+                      <p [innerHTML]="answer.body"></p>
+                    </div>
+                  </ng-template>
                   <ng-template #elseBlock><p>No Accepted Answers to this question</p></ng-template>
                 </div>
               </div>
@@ -63,6 +70,10 @@
               <div class="col-auto">
                 <span><b>Views:</b> {{question.view_count}}</span>
               </div>
+              <div *ngIf="question.answers; else answer0Block" class="col-auto">
+                <span><b>Answers:</b> {{question.answers.length}}</span>
+              </div>
+              <ng-template #answer0Block><span><b>Answers: </b>0</span></ng-template>
               <div class="col-auto">
                 <span><b>Asked On:</b> {{question.creation_date}}</span>
               </div>
