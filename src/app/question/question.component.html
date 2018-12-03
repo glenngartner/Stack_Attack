@@ -3,6 +3,7 @@
        (mouseover)="onMouseOver()"
        (mouseleave)="onMouseOut()"
        (mousedown)="onClickResultTitle()"
+       (window:resize)="resizeConcatTitle()"
   >
     <div class="row">
       <div class="col-auto w-100">
@@ -12,7 +13,7 @@
            [class.btn-dark]="menuIsOpen"
         >
           <div class="d-flex flex-row justify-content-between">
-            <p>{{concatTitle}}</p>
+            <p [innerHTML]="concatTitle"></p>
             <div *ngIf="question.answers; else elseAnswerSumBlock">
               <b>{{question.answers.length + 1}}</b>
             </div>

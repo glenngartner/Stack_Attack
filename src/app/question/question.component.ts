@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StackQuestion, StackReply} from '../generic/interfaces';
-import {StackExchangeService} from '../stack-exchange.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-question',
@@ -36,9 +36,18 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
   }
 
+  public resizeConcatTitle() {
+    console.log('Window resizing callback called');
+    if (this._question && this._question.title) {
+      this.trimTitle(this._question.title);
+    }
+  }
+
   private trimTitle(title: string): void {
-    if (title.length > this._titleCharLength) {
-      this.concatTitle = title.substr(0, this._titleCharLength) + '...';
+    const documentWidth = window.innerWidth;
+    if (title.length > documentWidth / 12) {
+      debugger;
+      this.concatTitle = title.substr(0, documentWidth / 12) + '...';
     } else {
       this.concatTitle = title;
     }
