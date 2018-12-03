@@ -11,10 +11,13 @@
            [class.shadow]="menuIsOpen"
            [class.btn-dark]="menuIsOpen"
         >
-          <div *ngIf="question.answers; else elseAnswerSumBlock">
-            <b>{{concatTitle + question.answers.length + 1}}</b>
+          <div class="d-flex flex-row justify-content-between">
+            <p>{{concatTitle}}</p>
+            <div *ngIf="question.answers; else elseAnswerSumBlock">
+              <b>{{question.answers.length + 1}}</b>
+            </div>
+            <ng-template #elseAnswerSumBlock><b>0</b></ng-template>
           </div>
-          <ng-template #elseAnswerSumBlock><b>{{concatTitle}} 0</b></ng-template>
         </a>
         <div class="collapse" id="collapseQuestion{{questionNumber}}" (mousedown)="onClickExpandedMenu()">
           <div class="card card-body"
@@ -60,7 +63,7 @@
                       <p [innerHTML]="answer.body"></p>
                     </div>
                   </ng-template>
-                  <ng-template #elseBlock><p>No Accepted Answers to this question</p></ng-template>
+                  <ng-template #elseBlock><p class="text-center"><i>No Accepted Answers to this question</i></p></ng-template>
                 </div>
               </div>
             </div>
