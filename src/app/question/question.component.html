@@ -100,7 +100,7 @@
                 <span><b>Asked On:</b> {{getDate() | date: 'short'}}</span>
               </div>
               <div class="col-auto">
-                <span><b>View: </b><a href={{question.link}}>Posting</a></span>
+                <span><b>Source: </b><a href={{question.link}}>Page</a></span>
               </div>
               <div class="col-auto ">
                 <div *ngFor="let tag of question.tags" class="badge badge-pill badge-dark mr-1">{{tag}}</div>
