@@ -11,7 +11,8 @@
     "ghp": "npx ngh --dir=dist/stack-attack",
     "prod": "ng build --prod --base-href /Stack_Attack/",
     "toGHP": "ng build --prod --base-href /Stack_Attack/ && npx ngh --dir=dist/stack-attack",
-    "build-docs": "typedoc --out docs/ src/app/"
+    "build-docs": "typedoc --out docs/ src/app/",
+    "all-the-builds": "typedoc --out docs/ src/app/ && ng build --prod --base-href /Stack_Attack/ && npx ngh --dir=dist/stack-attack"
   },
   "private": true,
   "dependencies": {

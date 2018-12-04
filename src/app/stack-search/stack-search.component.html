@@ -1,9 +1,9 @@
 <div class="form-row mt-2">
   <div class="col-auto w-100">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+    <input class="form-control mr-sm-2" type="search" placeholder="What Are You Searching For?"
+           aria-label="Search"
            (keyup)="captureSearchInput($event.target.value)"
-            (keydown)="formSubmit($event)"
-    >
+           (keydown)="formSubmit($event)">
   </div>
 </div>
 <div class="form-row">
@@ -15,4 +15,10 @@
     Results: {{stackQuestions.length}}
   </div>
 </div>
-<app-question *ngFor="let question of stackQuestions; let i = index;" [question] = "question" [questionNumber]="i"></app-question>
+<div class="row">
+  <div *ngIf="invalidSearchInput" class="col-sm-auto mx-auto my-2">
+    <h1 class="text-center display-4" [style.color]="'darkred'">Search For Nothing: <i>Get Nothing</i></h1>
+  </div>
+</div>
+<app-question *ngFor="let question of stackQuestions; let i = index;" [question]="question"
+              [questionNumber]="i"></app-question>

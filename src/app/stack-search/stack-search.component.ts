@@ -11,6 +11,7 @@ export class StackSearchComponent implements OnInit {
 
   /** The search input box value */
   public searchInput = '';
+  public invalidSearchInput = false;
 
   /** The stack question search results */
   public stackQuestions: StackQuestion[] = [];
@@ -42,17 +43,24 @@ export class StackSearchComponent implements OnInit {
   /**
    * Returns the Stack search results from the Stack Service, and stores the array of questions in the stackQuestions property,
    * for access by the view
+   * Checks for empty searches, and responds accordingly
    */
   showQuestionsWithQuery() {
-    this.stackExchangeService.searchForQuestions(this.searchInput)
-      .subscribe(
-        (data: StackReply) => {
-          // console.log('Stack Data received: ', data.items);
-          this.stackQuestions = data.items;
-          this.getAnswersFromQuery();
-        },
-        error => this.error = error
-      );
+    if (this.searchInput === '') {
+      this.invalidSearchInput = true;
+      this.stackQuestions = [];
+    } else {
+      this.invalidSearchInput = false;
+      this.stackExchangeService.searchForQuestions(this.searchInput)
+        .subscribe(
+          (data: StackReply) => {
+            // console.log('Stack Data received: ', data.items);
+            this.stackQuestions = data.items;
+            this.getAnswersFromQuery();
+          },
+          error => this.error = error
+        );
+    }
   }
 
   /**
@@ -64,7 +72,7 @@ export class StackSearchComponent implements OnInit {
         this.stackExchangeService.searchForAnswersToQuestion(question.question_id)
           .subscribe(
             (data: StackReply) => {
-              console.log('Stack Answers Received: ', data.items);
+              // console.log('Stack Answers Received: ', data.items);
               question.answers = data.items;
             },
             error => this.error = error

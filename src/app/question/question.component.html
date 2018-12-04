@@ -64,7 +64,7 @@
                         <div *ngIf="answer.is_accepted; then isAcceptedBlock; else notAcceptedBlock"></div>
                         <ng-template #isAcceptedBlock>
                           <p class="col-sm-auto mx-auto" [style.background-color]="acceptedAnswerHighlightColor">
-                            <b>Accepted Answer {{j+1}}</b>
+                            <b>Answer {{j+1}} (Accepted)</b>
                             <i> - Score: {{answer.score}}</i>
                           </p>
                         </ng-template>
