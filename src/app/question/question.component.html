@@ -96,7 +96,7 @@
               </div>
               <ng-template #answer0Block><span><b>Answers: </b>0</span></ng-template>
               <div class="col-auto">
-                <span><b>Asked On:</b> {{question.creation_date | date: 'short'}}</span>
+                <span><b>Asked On:</b> {{question.creation_date*1000 | date: 'short'}}</span>
               </div>
               <div class="col-auto">
                 <span><b>Link:</b> <a href={{question.link}}> Source</a></span>
