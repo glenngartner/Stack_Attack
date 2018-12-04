@@ -1,6 +1,13 @@
 # StackAttack
 
-Stack Overflow API Interaction
+A simple responsive Stack Overflow search tool that uses the Stack Overflow API.
+
+* It returns a list of 30 questions from Stack Overflow that contain references to the word(s) searched for. 
+* Each question in the returned list is expandable, and shows answers (when they exist), and highlighted accepted answers, when they exist
+* Each expanded question view shows relevant question data, like date created, tags, score, views, and a link to it's source.
+* Full project documentation is in docs directory, in the project root - courtesy of TypeDoc
+
+
 ---
 ### Angular Specific instructions: 
 
