@@ -6,7 +6,7 @@
        (window:resize)="resizeConcatTitle()"
   >
     <div class="row">
-      <div class="col-auto w-100" id ="questionResult{{questionNumber}}">
+      <div class="col-auto w-100" id="questionResult{{questionNumber}}">
         <a class="btn btn-light w-100 text-left" data-toggle="collapse" href="#collapseQuestion{{questionNumber}}"
            role="button" aria-expanded="false" aria-controls="collapseQuestion"
            [class.shadow]="menuIsOpen"
@@ -102,11 +102,8 @@
               <div class="col-auto">
                 <span><b>View: </b><a href={{question.link}}>Posting</a></span>
               </div>
-            </div>
-            <div class="row">
-              <!--<b class="col-sm-auto">Tags: </b>-->
-              <div *ngFor="let tag of question.tags" class="col-auto ml-0">
-                <span class="badge badge-pill badge-dark">{{tag}}</span>
+              <div class="col-auto ">
+                <div *ngFor="let tag of question.tags" class="badge badge-pill badge-dark mr-1">{{tag}}</div>
               </div>
             </div>
           </div>
