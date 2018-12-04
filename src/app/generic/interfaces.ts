@@ -19,7 +19,7 @@ export interface StackQuestion {
   score: number;
   view_count: number;
   tags: string[];
-  creation_date: number;
+  creation_date: Date;
   question_id: number;
   title: string;
   link: string;
@@ -29,4 +29,5 @@ export interface StackAnswer {
   body: string;
   creation_date: Date;
   is_accepted: boolean;
+  score: number;
 }

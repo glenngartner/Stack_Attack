@@ -15,7 +15,7 @@
           <div class="d-flex flex-row justify-content-between">
             <p [innerHTML]="concatTitle"></p>
             <div *ngIf="question.answers; else elseAnswerSumBlock">
-              <b>{{question.answers.length + 1}}</b>
+              <b>{{question.answers.length}}</b>
             </div>
             <ng-template #elseAnswerSumBlock><b>0</b></ng-template>
           </div>
@@ -60,11 +60,25 @@
                   </div>
                   <ng-template #thenBlock>
                     <div *ngFor="let answer of question.answers; let j = index">
-                      <div class="row"><div class="col-sm-auto mx-auto"><p><b>Answer {{j+1}}</b></p></div> </div>
-                      <p [innerHTML]="answer.body"></p>
+                      <div class="row">
+                        <div *ngIf="answer.is_accepted; then isAcceptedBlock; else notAcceptedBlock"></div>
+                        <ng-template #isAcceptedBlock>
+                          <p class="col-sm-auto mx-auto" [style.background-color]="acceptedAnswerHighlightColor">
+                            <b>Accepted Answer{{j+1}}</b>
+                            <i> - Score: {{answer.score}}</i>
+                          </p>
+                        </ng-template>
+                        <ng-template #notAcceptedBlock>
+                          <p class="col-sm-auto mx-auto"><b>Answer {{j+1}}</b><i> - Score: {{answer.score}}</i></p>
+                        </ng-template>
+                      </div>
+                      <div *ngIf="answer.is_accepted; then answerBodyYellow; else answerBodyWhite"></div>
+                      <ng-template #answerBodyYellow><p [style.background-color]="acceptedAnswerHighlightColor" [innerHTML]="answer.body"></p></ng-template>
+                      <ng-template #answerBodyWhite><p [innerHTML]="answer.body"></p></ng-template>
                     </div>
                   </ng-template>
-                  <ng-template #elseBlock><p class="text-center"><i>No Accepted Answers to this question</i></p></ng-template>
+                  <ng-template #elseBlock><p class="text-center"><i>No Accepted Answers to this question</i></p>
+                  </ng-template>
                 </div>
               </div>
             </div>
@@ -82,7 +96,7 @@
               </div>
               <ng-template #answer0Block><span><b>Answers: </b>0</span></ng-template>
               <div class="col-auto">
-                <span><b>Asked On:</b> {{question.creation_date}}</span>
+                <span><b>Asked On:</b> {{question.creation_date | date: 'short'}}</span>
               </div>
               <div class="col-auto">
                 <span><b>Link:</b> <a href={{question.link}}> Source</a></span>

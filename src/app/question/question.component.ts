@@ -12,6 +12,8 @@ export class QuestionComponent implements OnInit {
   public mouseIsOver = false;
   public concatTitle = '';
   public menuIsOpen = false;
+  public acceptedAnswerHighlightColor = 'honeydew';
+
   private _question: StackQuestion;
   private _titleCharLength = 45;
   private _clickedInsideExpandedMenu = false;
@@ -46,7 +48,6 @@ export class QuestionComponent implements OnInit {
   private trimTitle(title: string): void {
     const documentWidth = window.innerWidth;
     if (title.length > documentWidth / 12) {
-      debugger;
       this.concatTitle = title.substr(0, documentWidth / 12) + '...';
     } else {
       this.concatTitle = title;
