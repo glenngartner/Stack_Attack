@@ -45,6 +45,10 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+  public getDate(): Date {
+    return new Date(this._question.creation_date * 1000);
+  }
+
   private trimTitle(title: string): void {
     const documentWidth = window.innerWidth;
     if (title.length > documentWidth / 12) {

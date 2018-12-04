@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ghp": "npx ngh --dir=dist/stack-attack",
+    "prod": "ng build --prod --base-href /Stack_Attack/",
+    "toGHP": "ng build --prod --base-href /Stack_Attack/ && npx ngh --dir=dist/stack-attack"
   },
   "private": true,
   "dependencies": {
