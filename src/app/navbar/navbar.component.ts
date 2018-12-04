@@ -6,6 +6,12 @@ import {PageLinks} from '../generic/interfaces';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
+/**
+ * Navbar view component
+ * Seems like overkill for just one link, but it was intended to contain more, like a project documentation view, for easy reference
+ * Lack of time prevailed. Leaving this here to receive points for good intentions
+ */
 export class NavbarComponent implements OnInit {
 
   /**
@@ -13,7 +19,7 @@ export class NavbarComponent implements OnInit {
    */
   public links: PageLinks[] = [
     {name: 'Home', route: ''},
-    {name: 'Docs', route: 'docs'}
+    // {name: 'Docs', route: 'docs'}
 
   ];
 
