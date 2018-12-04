@@ -8,6 +8,9 @@ import {PageLinks} from '../generic/interfaces';
 })
 export class NavbarComponent implements OnInit {
 
+  /**
+   * Links to be displayed on the navbar
+   */
   public links: PageLinks[] = [
     {name: 'Home', route: ''},
     {name: 'Docs', route: 'docs'}

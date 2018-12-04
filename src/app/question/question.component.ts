@@ -9,26 +9,37 @@ import * as $ from 'jquery';
 })
 export class QuestionComponent implements OnInit {
 
+  /** Toggled true when mouse is over element*/
   public mouseIsOver = false;
+  /** The concatinated title for displaying on the rsults list button. Automatically adjusts to window width*/
   public concatTitle = '';
+  /** Toggled true when the specific result menu list item has been opened (ie: is not collapsed)*/
   public menuIsOpen = false;
+  /** Stores the highlight color (in CSS color format) for the accepted answer to this question, if any*/
   public acceptedAnswerHighlightColor = 'honeydew';
 
+  /** Reference to the specific stack question for this view instance.*/
   private _question: StackQuestion;
-  private _titleCharLength = 45;
+  /** Tracks if the expanded menu has been clicked. */
   private _clickedInsideExpandedMenu = false;
+  /** Tracks if the results title menu has been clicked*/
   private _resultTitleClicked = false;
 
   @Input()
+  /** Reference to the question for this instance. Received from the parent view, which searches
+   * performs the search. This setter will trim the title when the question reference is made
+   */
   set question(value: StackQuestion) {
     this.trimTitle(value.title);
     this._question = value;
   }
 
+  /** Reterns reference to this instances question object*/
   get question(): StackQuestion {
     return this._question;
   }
 
+  /** The question number unique to this instance. The parent search template assigns this value*/
   @Input()
   public questionNumber = 0;
 
@@ -38,17 +49,25 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
   }
 
+  /** Calls the trim title private method, accessible from the view*/
   public resizeConcatTitle() {
-    console.log('Window resizing callback called');
     if (this._question && this._question.title) {
       this.trimTitle(this._question.title);
     }
   }
 
+  /**
+   * Returns this question object's date value, fixed for Anuglar date pipe conversion
+   */
   public getDate(): Date {
     return new Date(this._question.creation_date * 1000);
   }
 
+  /**
+   * Trims the title of this question, and stores the value in the concatTitle property.
+   * This helps fit the question titles within the view bounds (ie: makes them responsive)
+   * @param title
+   */
   private trimTitle(title: string): void {
     const documentWidth = window.innerWidth;
     if (title.length > documentWidth / 12) {
@@ -58,20 +77,32 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+  /**
+   * Sets mouseIsOver property to true on mouse over
+   */
   public onMouseOver() {
     this.mouseIsOver = true;
   }
 
+  /**
+   * Sets mouseIsOver property to false when mouse is out
+   */
   public onMouseOut() {
     this.mouseIsOver = false;
   }
 
+  /**
+   * Toggles the menuIsOpen property, based on other property values
+   */
   public menuToggle() {
     if (this._resultTitleClicked && !this._clickedInsideExpandedMenu) {
       this.menuIsOpen = !this.menuIsOpen;
     }
   }
 
+  /**
+   * Sets resultTitleClicked property when result title element is clicked
+   */
   public onClickResultTitle() {
     if (!this._clickedInsideExpandedMenu) {
       this._resultTitleClicked = true;
@@ -83,6 +114,9 @@ export class QuestionComponent implements OnInit {
     this._clickedInsideExpandedMenu = false;
   }
 
+  /**
+   * Sets _clickedInsideExpandedMenu property when the expanded menu is clicked
+   */
   public onClickExpandedMenu() {
     this._clickedInsideExpandedMenu = true;
     this.menuToggle();

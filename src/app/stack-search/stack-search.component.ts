@@ -9,28 +9,35 @@ import {StackQuestion, StackReply} from '../generic/interfaces';
 })
 export class StackSearchComponent implements OnInit {
 
+  /** The search input box value */
   public searchInput = '';
 
+  /** The stack question search results */
   public stackQuestions: StackQuestion[] = [];
+  /** the error object, if a search error is returned */
   private error;
 
   constructor(private stackExchangeService: StackExchangeService) {
-    console.log('Test');
   }
 
   ngOnInit() {
   }
 
+  /** Stores the value of the search input form element */
   public captureSearchInput(value: string) {
     this.searchInput = value;
-    console.log(`Search text input value`, value);
+    // console.log(`Search text input value`, value);
   }
 
+  /**
+   * Returns the Stack search results from the Stack Service, and stores the array of questions in the stackQuestions property,
+   * for access by the view
+   */
   showQuestionsWithQuery() {
     this.stackExchangeService.searchForQuestions(this.searchInput)
       .subscribe(
         (data: StackReply) => {
-          console.log('Stack Data received: ', data.items);
+          // console.log('Stack Data received: ', data.items);
           this.stackQuestions = data.items;
           this.getAnswersFromQuery();
         },
@@ -38,6 +45,9 @@ export class StackSearchComponent implements OnInit {
       );
   }
 
+  /**
+   * Gets an array of answer objects from the Stack Service, and storms them in each question's answer property
+   */
   getAnswersFromQuery() {
     for (const question of this.stackQuestions) {
       if (question.answer_count > 0) {
