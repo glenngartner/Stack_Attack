@@ -1,7 +1,9 @@
 <div class="form-row mt-2">
   <div class="col-auto w-100">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-           (keyup)="captureSearchInput($event.target.value)">
+           (keyup)="captureSearchInput($event.target.value)"
+            (keydown)="formSubmit($event)"
+    >
   </div>
 </div>
 <div class="form-row">

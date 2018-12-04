@@ -30,6 +30,16 @@ export class StackSearchComponent implements OnInit {
   }
 
   /**
+   * Checks for the Enter key press when a user is typing in the search box
+   * @param event
+   */
+  public formSubmit(event) {
+    if (event.keyCode === 13) {
+      this.showQuestionsWithQuery();
+    }
+  }
+
+  /**
    * Returns the Stack search results from the Stack Service, and stores the array of questions in the stackQuestions property,
    * for access by the view
    */
