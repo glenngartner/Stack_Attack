@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {StackExchangeService} from '../stack-exchange.service';
 import {StackQuestion, StackReply} from '../generic/interfaces';
 
@@ -38,6 +38,11 @@ export class StackSearchComponent implements OnInit {
     if (event.keyCode === 13) {
       this.showQuestionsWithQuery();
     }
+  }
+
+  private configureImagesInSource() {
+    const images = $('img');
+    images.addClass('img-thumbnail');
   }
 
   /**

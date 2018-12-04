@@ -6,7 +6,7 @@
        (window:resize)="resizeConcatTitle()"
   >
     <div class="row">
-      <div class="col-auto w-100">
+      <div class="col-auto w-100" id ="questionResult{{questionNumber}}">
         <a class="btn btn-light w-100 text-left" data-toggle="collapse" href="#collapseQuestion{{questionNumber}}"
            role="button" aria-expanded="false" aria-controls="collapseQuestion"
            [class.shadow]="menuIsOpen"

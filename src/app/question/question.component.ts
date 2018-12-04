@@ -1,13 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {StackQuestion, StackReply} from '../generic/interfaces';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit} from '@angular/core';
+import {StackQuestion} from '../generic/interfaces';
 import * as $ from 'jquery';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  styleUrls: ['./question.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent implements OnInit, OnChanges {
 
   /** Toggled true when mouse is over element*/
   public mouseIsOver = false;
@@ -49,6 +50,14 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Looks for changes in the input properties
+   * Question objects, in this case
+   */
+  ngOnChanges() {
+    this.configureImagesInSource();
+  }
+
   /** Calls the trim title private method, accessible from the view*/
   public resizeConcatTitle() {
     if (this._question && this._question.title) {
@@ -61,6 +70,16 @@ export class QuestionComponent implements OnInit {
    */
   public getDate(): Date {
     return new Date(this._question.creation_date * 1000);
+  }
+
+  /**
+   * Called when the question input property changes
+   * Looks for all images in the document (including questions and answers), and makes them
+   * bootstrap images. otherwise, they're huge!! and not responsive, at all
+   */
+  private configureImagesInSource() {
+    const images = $('img');
+    images.addClass('img-thumbnail');
   }
 
   /**
