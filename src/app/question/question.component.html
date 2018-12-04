@@ -73,7 +73,8 @@
                         </ng-template>
                       </div>
                       <div *ngIf="answer.is_accepted; then answerBodyYellow; else answerBodyWhite"></div>
-                      <ng-template #answerBodyYellow><p [style.background-color]="acceptedAnswerHighlightColor" [innerHTML]="answer.body"></p></ng-template>
+                      <ng-template #answerBodyYellow><p [style.background-color]="acceptedAnswerHighlightColor"
+                                                        [innerHTML]="answer.body"></p></ng-template>
                       <ng-template #answerBodyWhite><p [innerHTML]="answer.body"></p></ng-template>
                     </div>
                   </ng-template>
@@ -99,7 +100,13 @@
                 <span><b>Asked On:</b> {{getDate() | date: 'short'}}</span>
               </div>
               <div class="col-auto">
-                <span><b>Link:</b> <a href={{question.link}}> Source</a></span>
+                <span><b>View: </b><a href={{question.link}}>Posting</a></span>
+              </div>
+            </div>
+            <div class="row">
+              <b class="col-sm-auto">Tags: </b>
+              <div *ngFor="let tag of question.tags" class="col-auto ml-0">
+                <span class="badge badge-pill badge-dark">{{tag}}</span>
               </div>
             </div>
           </div>
